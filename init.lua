@@ -580,6 +580,7 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'clangd', 'codelldb'
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -839,7 +840,43 @@ require('lazy').setup({
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   -- { import = 'custom.plugins' },
+
   'tribela/vim-transparent',
+
+  -- debuggers:
+  "nvim-neotest/nvim-nio",
+  "mfussenegger/nvim-dap",
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "mfussenegger/nvim-dap",
+    },
+    opts = {
+      handlers = {},
+    },
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    event = "VeryLazy",
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+    config = function()
+      local dap = require("dap")
+      local dapui = require("dapui")
+      dapui.setup()
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+    end
+  },
+
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -864,3 +901,6 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+vim.keymap.set("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>")
+vim.keymap.set("n", "<leader>dr", "<cmd> DapContinue <CR>")
