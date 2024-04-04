@@ -878,6 +878,16 @@ require('lazy').setup({
     end
   },
 
+  -- filetree
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+    },
+    config = function(_, opts)
+      require("nvim-tree").setup(opts)
+    end
+  },
+
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -897,7 +907,7 @@ require('lazy').setup({
       task = '📌',
       lazy = '💤 ',
     },
-  },
+  }
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
@@ -905,3 +915,4 @@ require('lazy').setup({
 
 vim.keymap.set("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>")
 vim.keymap.set("n", "<leader>dr", "<cmd> DapContinue <CR>")
+-- ctrl x and ctrl v to open splits
