@@ -539,6 +539,7 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         clangd = {},
+        csharp_ls = {},
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
@@ -580,7 +581,7 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        'clangd', 'codelldb'
+        'clangd', 'codelldb', 'netcoredbg'
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -794,7 +795,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', "c_sharp" },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
