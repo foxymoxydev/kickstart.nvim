@@ -605,7 +605,7 @@ require('lazy').setup({
     lazy = false,
     keys = {
       {
-        '<leader>f',
+        '<leader>tf',
         function()
           require('conform').format { async = true, lsp_fallback = true }
         end,
@@ -897,6 +897,10 @@ require('lazy').setup({
     end
   },
 
+  {
+    "szw/vim-maximizer"
+  },
+
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -924,4 +928,22 @@ require('lazy').setup({
 
 vim.keymap.set("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>")
 vim.keymap.set("n", "<leader>dr", "<cmd> DapContinue <CR>")
+vim.keymap.set("n", "<leader>f", "<cmd> NvimTreeToggle <CR>")
+vim.keymap.set("n", "<leader>m", "<cmd> MaximizerToggle! <CR>")
+vim.keymap.set({ "n", "t", "i" }, "<a-'>", "<cmd> NeotermToggle <CR>")
+vim.keymap.set({ "n", "t", "i" }, "<a-h>", "<c-w><c-h>")
+vim.keymap.set({ "n", "t", "i" }, "<a-j>", "<c-w><c-j>")
+vim.keymap.set({ "n", "t", "i" }, "<a-k>", "<c-w><c-k>")
+vim.keymap.set({ "n", "t", "i" }, "<a-l>", "<c-w><c-l>")
+vim.keymap.set({ "n", "t", "i" }, "<a-p>", "tabn")
+vim.keymap.set({ "n", "t", "i" }, "<a-u>", "tabp")
+vim.keymap.set({ "n", "t", "i" }, "<a-r>", "<c-w>r")
+vim.keymap.set("n", "<leader>j", "<c-w>J")
+vim.keymap.set("n", "<leader>h", "<c-w>H")
+vim.keymap.set("n", "<leader>k", "<c-w>K")
+vim.keymap.set("n", "<leader>l", "<c-w>L")
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.expandtab = true
+
 -- ctrl x and ctrl v to open splits
