@@ -888,6 +888,15 @@ require('lazy').setup({
     end
   },
 
+  {
+    "itmecho/neoterm.nvim",
+    config = function(_, opts)
+      require("neoterm").setup({
+        mode = 'horizontal'
+      })
+    end
+  },
+
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
