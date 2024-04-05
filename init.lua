@@ -946,4 +946,8 @@ vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.expandtab = true
 
+vim.cmd[[highlight Normal ctermbg=NONE guibg=NONE ]]
+vim.cmd[[highlight NormalFloat ctermbg=NONE guibg=NONE ]]
+--vim.cmd[[highlight Pmenu ctermbg=NONE guibg=NONE ]]
+
 -- ctrl x and ctrl v to open splits
