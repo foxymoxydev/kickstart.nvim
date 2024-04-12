@@ -900,6 +900,18 @@ require('lazy').setup({
   {
     "szw/vim-maximizer"
   },
+  "nvim-lua/plenary.nvim",
+  {
+    "ThePrimeagen/harpoon",
+    config = function()
+      local mark = require("harpoon.mark")
+      local ui = require("harpoon.ui")
+      vim.keymap.set("n", "<leader>ha", mark.add_file)
+      vim.keymap.set("n", "<leader>hv", ui.toggle_quick_menu)
+      vim.keymap.set({ "n", "t", "i" }, "<a-p>", ui.nav_next)
+      vim.keymap.set({ "n", "t", "i" }, "<a-u>", ui.nav_prev)
+    end
+  },
 
 }, {
   ui = {
@@ -929,19 +941,17 @@ require('lazy').setup({
 vim.keymap.set("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>")
 vim.keymap.set("n", "<leader>dr", "<cmd> DapContinue <CR>")
 vim.keymap.set("n", "<leader>f", "<cmd> NvimTreeToggle <CR>")
-vim.keymap.set("n", "<leader>m", "<cmd> MaximizerToggle! <CR>")
+vim.keymap.set({"n", "t", "i"}, "<a-m>", "<cmd> MaximizerToggle! <CR>")
 vim.keymap.set({ "n", "t", "i" }, "<a-'>", "<cmd> NeotermToggle <CR>")
 vim.keymap.set({ "n", "t", "i" }, "<a-h>", "<c-w><c-h>")
 vim.keymap.set({ "n", "t", "i" }, "<a-j>", "<c-w><c-j>")
 vim.keymap.set({ "n", "t", "i" }, "<a-k>", "<c-w><c-k>")
 vim.keymap.set({ "n", "t", "i" }, "<a-l>", "<c-w><c-l>")
-vim.keymap.set({ "n", "t", "i" }, "<a-p>", "tabn")
-vim.keymap.set({ "n", "t", "i" }, "<a-u>", "tabp")
 vim.keymap.set({ "n", "t", "i" }, "<a-r>", "<c-w>r")
-vim.keymap.set("n", "<leader>j", "<c-w>J")
-vim.keymap.set("n", "<leader>h", "<c-w>H")
-vim.keymap.set("n", "<leader>k", "<c-w>K")
-vim.keymap.set("n", "<leader>l", "<c-w>L")
+--vim.keymap.set("n", "<leader>j", "<c-w>J")
+--vim.keymap.set("n", "<leader>h", "<c-w>H")
+--vim.keymap.set("n", "<leader>k", "<c-w>K")
+--vim.keymap.set("n", "<leader>l", "<c-w>L")
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.expandtab = true
