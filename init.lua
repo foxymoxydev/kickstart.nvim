@@ -881,10 +881,21 @@ require('lazy').setup({
   -- filetree
   {
     "nvim-tree/nvim-tree.lua",
-    opts = {
-    },
     config = function(_, opts)
-      require("nvim-tree").setup(opts)
+      require("nvim-tree").setup({
+        on_attach = function(bufnr)
+          local api = require("nvim-tree.api")
+
+          local function opts(desc)
+            return {desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+          end
+
+          api.config.mappings.default_on_attach(bufnr)
+
+          vim.keymap.set("n", "v", api.node.open.vertical, opts("Vertical split"))
+          vim.keymap.set("n", "s", api.node.open.horizontal, opts("Horizontal split"))
+        end
+      })
     end
   },
 
@@ -961,3 +972,4 @@ vim.cmd[[highlight NormalFloat ctermbg=NONE guibg=NONE ]]
 --vim.cmd[[highlight Pmenu ctermbg=NONE guibg=NONE ]]
 
 -- ctrl x and ctrl v to open splits
+vim.opt.termguicolors = true
